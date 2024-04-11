@@ -1,0 +1,45 @@
+{
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "express": "^4.19.2",
+    "express-handlebars": "^7.1.2",
+    "husky": "^8.0.3",
+    "lint-staged": "^15.2.0",
+    "method-override": "^3.0.0",
+    "mongoose": "^6.11.4",
+    "mongoose-delete": "^1.0.2",
+    "mongoose-sequence": "^6.0.1",
+    "mongoose-slug-updater": "^3.3.0",
+    "morgan": "^1.10.0",
+    "nodemon": "^3.0.2",
+    "prettier": "^3.1.1"
+  },
+  "name": "vankhuong-nodejs",
+  "version": "1.0.0",
+  "main": "src/index.js",
+  "scripts": {
+    "beauty": "prettier --single-quote --trailing-comma all --write 'src/**/*.{js,json,scss}'",
+    "start": "nodemon --inspect src/index.js",
+    "watch": "node-sass --watch src/resourses/scss/ --output src/public/css/",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "van khuong",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tuonglong1012/blog_nodejs.git"
+  },
+  "keywords": [
+    "F8",
+    "blog",
+    "pon"
+  ],
+  "bugs": {
+    "url": "https://github.com/tuonglong1012/blog_nodejs/issues"
+  },
+  "homepage": "https://github.com/tuonglong1012/blog_nodejs#readme",
+  "description": "",
+  "devDependencies": {
+    "node-sass": "^9.0.0"
+  }
+}

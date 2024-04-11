@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Course Pages</title>
+    <link rel="stylesheet" href="/css/app.css">
+</head>
+<body>
+
+    <div class="login-container">
+        <div class="form-container">
+            <h2>Đăng kí</h2>
+
+            <form method="POST" action="/signup">
+                <div class="form-group">
+                    <label for="name">Tên đầy đủ</label>
+                    <input type="text" id="name" name="username" placeholder="VD: Long Võ" required autocomplete="off">
+                </div>
+                <div class="form-group">
+                    <label for="password">Mật khẩu</label>
+                    <input type="password" id="password" name="password" placeholder="Nhập mật khẩu" required>
+                </div>
+
+                <button type="submit" class="btn btn-submit">Đăng kí</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
