@@ -11,6 +11,7 @@
     "mongoose-sequence": "^6.0.1",
     "mongoose-slug-updater": "^3.3.0",
     "morgan": "^1.10.0",
+    "node-modules": "^0.0.1",
     "nodemon": "^3.0.2",
     "prettier": "^3.1.1"
   },
