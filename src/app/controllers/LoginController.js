@@ -11,7 +11,7 @@ class LoginController {
         res.render('register/signup', {layout: false})
     };
 
-    // [POST] /signup
+    // [POST] /sign up
     async register(req, res, next) {
         const data = {
             name: req.body.username,
@@ -19,7 +19,7 @@ class LoginController {
         };
         const existingUser = await Login.findOne({name: data.name}); 
         if (existingUser) { 
-            res.send('User already exists. Please choose a different username')       
+            res.send('Tên người dung đã tồn tại! Vui lòng nhập tên khác')       
         } else{
             //hash password using bcrypt 
             const saltRounds = 10;
@@ -30,36 +30,22 @@ class LoginController {
             res.redirect('/');
         }
     } 
-           
+    
+    // [POST] /sign in
     async signin(req, res, next) { 
 
         const checkUser = await Login.findOne({name: req.body.username});
         console.log(checkUser)
         if(!checkUser) {
-            res.send('User not found')
+            res.send('Không tìm thấy tên người dùng !')
         }
 
         const matchPass = await bcrypt.compare(req.body.password, checkUser.password);
         if(matchPass) {
             res.redirect('/home');
         }else{
-            res.send('wrong password!!')
-        }
-        
-        // let userQuery = Login.findOne({name: req.body.username});
-
-        // Promise.all([userQuery, bcrypt.compare(req.body.password, newUser)])
-        // .then(([userName, userPass]) => {
-        //     if(!userName) {
-        //         res.send('User not found');
-        //     }
-        //     if(userPass) {
-        //         res.render('home')
-        //     }
-        // })
-        
-        // .catch(next)      
-        
+            res.send('Sai mật khẩu!!')
+        }     
     }
 };
 

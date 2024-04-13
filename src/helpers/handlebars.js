@@ -1,4 +1,4 @@
-const Handlebars = require('handlebars');
+const handlebars = require('handlebars');
 
 module.exports = (field, sort) => {
     // const sortType = field === sort.column ? sort.type : 'default';
@@ -15,12 +15,12 @@ module.exports = (field, sort) => {
     };
     const icon = icons[sort.type];
     const type = types[sort.type];
-    const href = Handlebars.escapeExpression(`?_sort&column=${field}&type=${type}`)
+    const href = handlebars.escapeExpression(`?_sort&column=${field}&type=${type}`)
 
     const output = `
     <a class="chevron-expand-outline" href="${href}">
         <ion-icon name=${icon}></ion-icon>
     </a>
     `
-    return new Handlebars.SafeString(output);
+    return new handlebars.SafeString(output);
 };

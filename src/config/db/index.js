@@ -8,8 +8,6 @@ mongoose.set('strictQuery', false);
 async function connect() {
   try {
     await mongoose.connect(url, {
-      // useNewUrlParser: true,
-      // useUnifiedTopology: true,
     });
     console.log('Connect Successfully');
   } catch (error) {
