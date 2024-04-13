@@ -6,6 +6,7 @@
     "husky": "^8.0.3",
     "lint-staged": "^15.2.0",
     "method-override": "^3.0.0",
+    "mongodb": "^6.5.0",
     "mongoose": "^6.11.4",
     "mongoose-delete": "^1.0.2",
     "mongoose-sequence": "^6.0.1",
