@@ -35,7 +35,6 @@ class LoginController {
     async signin(req, res, next) { 
 
         const checkUser = await Login.findOne({name: req.body.username});
-        console.log(checkUser)
         if(!checkUser) {
             res.send('Không tìm thấy tên người dùng !')
         }
