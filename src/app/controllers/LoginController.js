@@ -44,14 +44,7 @@ class LoginController {
             }
         }else {
             res.send('Không tìm thấy tên người dùng !')
-        }
-
-        // const matchPass = await bcrypt.compare(req.body.password, checkUser.password);
-        // if(matchPass) {
-        //     res.redirect('/home');
-        // }else{
-        //     res.send('Sai mật khẩu!!')
-        // };  
+        };
     };
 };
 
