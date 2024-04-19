@@ -28,24 +28,31 @@ class LoginController {
             
             const newUser = await Login.insertMany(data);
             res.redirect('/');
-        }
-    } 
+        };
+    };
     
     // [POST] /sign in
     async signin(req, res, next) { 
 
         const checkUser = await Login.findOne({name: req.body.username});
-        if(!checkUser) {
+        if(checkUser) {
+            const matchPass = await bcrypt.compare(req.body.password, checkUser.password);
+            if(matchPass) {
+                res.redirect('/home');
+            }else{
+                res.send('Sai mật khẩu!!')
+            }
+        }else {
             res.send('Không tìm thấy tên người dùng !')
         }
 
-        const matchPass = await bcrypt.compare(req.body.password, checkUser.password);
-        if(matchPass) {
-            res.redirect('/home');
-        }else{
-            res.send('Sai mật khẩu!!')
-        }     
-    }
+        // const matchPass = await bcrypt.compare(req.body.password, checkUser.password);
+        // if(matchPass) {
+        //     res.redirect('/home');
+        // }else{
+        //     res.send('Sai mật khẩu!!')
+        // };  
+    };
 };
 
 module.exports = new LoginController();
