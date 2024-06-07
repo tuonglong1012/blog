@@ -3,11 +3,14 @@ const morgan = require('morgan');
 const handlebars = require('express-handlebars');
 const path = require('path');
 const app = express();
-const port = 8080;
 const methodOverride = require('method-override');
 const route = require('./routes');
 const db = require('./config/db');
 const sortMiddleware = require('./app/middlewares/SortMiddleware');
+
+// config dotenv
+require('dotenv').config();
+const PORT = process.env.port || 8080;
 
 // HTTP logger
 app.use(morgan('combined'));
@@ -46,4 +49,6 @@ route(app);
 // Connect to DB
 db.connect();
 
-app.listen(port, () => console.log(`listening at http://localhost:${port}`));
+app.listen(PORT , () => {
+  console.log(`listening at http://localhost:${PORT}`)
+});

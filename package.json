@@ -1,6 +1,7 @@
 {
   "dependencies": {
     "bcrypt": "^5.1.1",
+    "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "express-handlebars": "^7.1.2",
     "husky": "^8.0.3",
@@ -21,7 +22,7 @@
   "main": "src/index.js",
   "scripts": {
     "beauty": "prettier --single-quote --trailing-comma all --write 'src/**/*.{js,json,scss}'",
-    "start": "nodemon --inspect src/index.js",
+    "start": "nodemon src/index.js",
     "watch": "node-sass --watch src/resourses/scss/ --output src/public/css/",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
