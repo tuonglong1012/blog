@@ -10,7 +10,7 @@ const sortMiddleware = require('./app/middlewares/SortMiddleware');
 
 // config dotenv
 require('dotenv').config();
-const PORT = process.env.port || 8080;
+const PORT = process.env.port || 5000;
 
 // HTTP logger
 app.use(morgan('combined'));
