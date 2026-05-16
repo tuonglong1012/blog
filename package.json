@@ -14,8 +14,7 @@
     "mongoose-slug-updater": "^3.3.0",
     "morgan": "^1.10.0",
     "node-modules": "^0.0.1",
-    "nodemon": "^3.0.2",
-    "prettier": "^3.1.1"
+    "nodemon": "^3.0.2"
   },
   "name": "vankhuong-nodejs",
   "version": "1.0.0",
@@ -43,6 +42,7 @@
   "homepage": "https://github.com/tuonglong1012/blog_nodejs#readme",
   "description": "",
   "devDependencies": {
-    "node-sass": "^9.0.0"
+    "node-sass": "^9.0.0",
+    "prettier": "3.4.2"
   }
 }

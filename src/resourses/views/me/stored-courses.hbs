@@ -1,5 +1,6 @@
 <form class="mt-4" name="container-form" method="POST" action="/courses/handle-form-actions">
     <h3>Danh sách khóa Học</h3>
+
     <div class="row">
         <div class="col col-lg-8 ">
             <div class="mt-4 d-flex align-items-center">
@@ -12,7 +13,7 @@
                         <option value="delete">Xóa</option>             
                 </select>
 
-                <button class="btn btn-primary btn-sm" id="check-all-submit-btn" disabled="disabled"> Xác nhận</button>
+                <button class="btn btn-primary btn-sm" id="check-all-submit-btn"> Xác nhận</button>
             </div>
         </div>
         <div class="col">
@@ -28,14 +29,14 @@
         </div>
     </div>
 
- 
-    <table class="table table-striped table-bordered mt-4">
+    <table  class="table table-striped table-bordered mt-4">
         <thead class="thead-dark">
             <tr>
                 <th scope="col"></th>
-                <th scope="col" colspan="1">
-                    ID
-                    {{{softable '_id' _sort}}}
+                <th name="id" scope="col" colspan="1"> 
+                    ID 
+                    {{!-- {{{softable '_id' _sort}}}  --}}
+                    
                 </th>
                 <th scope="col">
                     Tên Khóa học 
@@ -46,8 +47,9 @@
                     {{!-- {{{softable 'level' _sort}}} --}}
                 </th>
                 <th scope="col">
+                    {{{softable 'createdAt' _sort}}}
                     Thời gian tạo khóa học
-                    {{!-- {{{softable 'createdAt' _sort}}} --}}
+                    
                 </th>
                 <th scope="col">
                     Tùy chọn
@@ -83,6 +85,10 @@
             {{/each}}
         </tbody>
     </table>
+
+     <nav aria-label="Page navigation">
+        <ul class="pagination justify-content-center" id="pagination"></ul>
+    </nav>
 </form>
 
 <!-- Confirm Delete Button -->
@@ -109,6 +115,79 @@
 <form name="delete-course-form" method="POST"></form>
 
 <script>
+    document.addEventListener("DOMContentLoaded", function () {
+    let currentPage = 1;
+    const limit = 5;
+
+    function fetchCourses(page) {
+        fetch(`http://localhost:8080/courses/course?page=${page}&limit=${limit}`)
+            .then(response => response.json())
+            .then(data => {
+                renderCourses(data.courses);
+                renderPagination(data.totalPages, page);
+            })
+            .catch(error => console.error("Lỗi tải dữ liệu:", error));
+    }
+
+    function renderCourses(courses) {
+        const courseList = document.getElementById("course-list");
+
+        if (!courseList) {
+            console.error("Không tìm thấy phần tử #course-list");
+            return;
+        }
+
+        courseList.innerHTML = ""; // Xóa nội dung cũ
+
+        courses.forEach(course => {
+            courseList.innerHTML += `
+                <div class="col-md-4">
+                    <div class="card mb-3">
+                        <div class="card-body">
+                            <h5 class="card-title">${course.title}</h5>
+                            <p class="card-text">${course.description}</p>
+                            <p class="card-text"><strong>Giá:</strong> $${course.price}</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        });
+    }
+
+    function renderPagination(totalPages, currentPage) {
+        const pagination = document.getElementById("pagination");
+
+        if (!pagination) {
+            console.error("Không tìm thấy phần tử #pagination");
+            return;
+        }
+
+        pagination.innerHTML = "";
+
+        pagination.innerHTML += `
+            <li class="page-item ${currentPage === 1 ? "disabled" : ""}">
+                <a class="page-link" href="#" onclick="fetchCourses(${currentPage - 1})">Previous</a>
+            </li>
+        `;
+
+        for (let i = 1; i <= totalPages; i++) {
+            pagination.innerHTML += `
+                <li class="page-item ${i === currentPage ? "active" : ""}">
+                    <a class="page-link" href="#" onclick="fetchCourses(${i})">${i}</a>
+                </li>
+            `;
+        }
+
+        pagination.innerHTML += `
+            <li class="page-item ${currentPage === totalPages ? "disabled" : ""}">
+                <a class="page-link" href="#" onclick="fetchCourses(${currentPage + 1})">Next</a>
+            </li>
+        `;
+    }
+
+    fetchCourses(currentPage);
+});
+
 
     document.addEventListener('DOMContentLoaded', function() {
         var courseIds;
@@ -156,5 +235,7 @@
             };
         };
     });
+
+    
 
 </script>
